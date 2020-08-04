@@ -18,6 +18,8 @@ import com.test.cep.service.impl.CepServiceImpl;
 @ExtendWith(MockitoExtension.class)
 public class CepServiceImplTest {
 	
+	private static final String CEP = "30575-020";
+
 	private CepServiceImpl cepServiceImpl;
 	
 	@Mock
@@ -27,12 +29,12 @@ public class CepServiceImplTest {
 	public void testGetCep() throws Exception {
 		cepServiceImpl = new CepServiceImpl(viaCepClient);
 		
-		when(viaCepClient.getAddressByCep(anyString())).thenReturn(Address.builder().cep("30575-020").street("Rua San Salvador").build());
+		when(viaCepClient.getAddressByCep(anyString())).thenReturn(Address.builder().cep(CEP).street("Rua San Salvador").build());
 		
 		assertThat(cepServiceImpl).isNotNull();
-		Address addressByCep = cepServiceImpl.getAddressByCep("30575-020");
+		Address addressByCep = cepServiceImpl.getAddressByCep(CEP);
 		assertThat(addressByCep).isNotNull();
-		assertThat(addressByCep.getCep()).isEqualTo("30575-020");
+		assertThat(addressByCep.getCep()).isEqualTo(CEP);
 		assertThat(addressByCep.getStreet()).isEqualTo("Rua San Salvador");
 	}
 	
