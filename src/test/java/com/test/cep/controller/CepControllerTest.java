@@ -73,8 +73,8 @@ public class CepControllerTest {
 		AddressResult addressResult = objectMapper.readValue(result.getResponse().getContentAsString(), AddressResult.class);
 		
 		assertThat(addressResult).isNotNull();
-		assertThat(addressResult.getCep()).isNull();;
 		assertThat(addressResult.getStreet()).isNull();
+		assertThat(addressResult.getCep()).isNull();;
 		assertThat(addressResult.getError()).isNotNull();
 		assertThat(addressResult.getError().getMessage()).isEqualTo("Unknown Error, please contact the call center");
 	}
